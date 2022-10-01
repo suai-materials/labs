@@ -1,0 +1,6 @@
+[submodule "01.01/WorkWithFiles"]
+	path = 01.01/WorkWithFiles
+	url = https://github.com/suai-materials/WorksWithFiles.git
+[submodule "01.01/NbaApp"]
+	path = 01.01/NbaApp
+	url = https://github.com/suai-materials/Nba-App.git
