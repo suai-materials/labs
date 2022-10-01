@@ -4,3 +4,6 @@
 [submodule "01.01/NbaApp"]
 	path = 01.01/NbaApp
 	url = https://github.com/suai-materials/Nba-App.git
+[submodule "01.02/4 sem"]
+	path = 01.02/4 sem
+	url = https://github.com/suai-materials/4_sem_testing.git
