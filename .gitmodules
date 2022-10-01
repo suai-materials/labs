@@ -7,3 +7,6 @@
 [submodule "01.02/4 sem"]
 	path = 01.02/4 sem
 	url = https://github.com/suai-materials/4_sem_testing.git
+[submodule "04.01/db_lab1"]
+	path = 04.01/db_lab1
+	url = https://github.com/suai-materials/db_lab1.git
