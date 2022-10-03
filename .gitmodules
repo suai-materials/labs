@@ -10,3 +10,6 @@
 [submodule "04.01/db_lab1"]
 	path = 04.01/db_lab1
 	url = https://github.com/suai-materials/db_lab1.git
+[submodule "02.03/lpp"]
+	path = 02.03/lpp
+	url = https://github.com/suai-materials/lin_program_problem.git
