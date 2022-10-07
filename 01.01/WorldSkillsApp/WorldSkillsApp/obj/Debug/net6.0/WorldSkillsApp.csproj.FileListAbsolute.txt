@@ -1,0 +1,15 @@
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\bin\Debug\net6.0\WorldSkillsApp.exe
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\bin\Debug\net6.0\WorldSkillsApp.deps.json
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\bin\Debug\net6.0\WorldSkillsApp.runtimeconfig.json
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\bin\Debug\net6.0\WorldSkillsApp.dll
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\bin\Debug\net6.0\WorldSkillsApp.pdb
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.AssemblyInfo.cs
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.dll
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\refint\WorldSkillsApp.dll
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.pdb
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\WorldSkillsApp.genruntimeconfig.cache
+C:\Users\user\Desktop\labs\01.01\WorldSkillsApp\WorldSkillsApp\obj\Debug\net6.0\ref\WorldSkillsApp.dll
