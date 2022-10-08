@@ -13,3 +13,9 @@
 [submodule "02.03/lpp"]
 	path = 02.03/lpp
 	url = https://github.com/suai-materials/lin_program_problem.git
+[submodule "01.01/WorldSkillsApp"]
+	path = 01.01/WorldSkillsApp
+	url = https://github.com/suai-materials/WorldSkillsApp.git
+[submodule "01.02/TZ"]
+	path = 01.02/TZ
+	url = https://github.com/suai-materials/tz.git
