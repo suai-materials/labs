@@ -19,3 +19,6 @@
 [submodule "01.02/TZ"]
 	path = 01.02/TZ
 	url = https://github.com/suai-materials/tz.git
+[submodule "01.01/MyClasses"]
+	path = 01.01/MyClasses
+	url = https://github.com/suai-materials/MyClasses.git
