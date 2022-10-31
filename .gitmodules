@@ -22,7 +22,7 @@
 [submodule "01.01/MyClasses"]
 	path = 01.01/MyClasses
 	url = https://github.com/suai-materials/MyClasses.git
-[submodule "04.01/.\\SQLite-lab\\"]
+[submodule "04.01/SQLite-lab"]
 	path = 04.01/.\\SQLite-lab\\
 	url = https://github.com/suai-materials/Sqlite-lab.git
 [submodule "03.01_2/1"]
