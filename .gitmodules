@@ -31,3 +31,6 @@
 [submodule "01.01/PasswordC"]
 	path = 01.01/PasswordC
 	url = https://github.com/suai-materials/Password.git
+[submodule "01.01/VigenereCipher"]
+	path = 01.01/VigenereCipher
+	url = https://github.com/suai-materials/VegnereCiphere.git
