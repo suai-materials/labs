@@ -1,4 +1,8 @@
 #+LANGUAGE: ru
+#+AUTHOR: Вася Панков
+#+ODT_STYLES_FILE: "../templates/content12.ott"
+#+EXPORT_FILE_NAME: report
+
 #+INCLUDE: ./WorkWithFiles/1.org
 
 #+INCLUDE: ./NbaApp/1.org
