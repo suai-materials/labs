@@ -37,3 +37,6 @@
 [submodule "02.03/prognoz"]
 	path = 02.03/prognoz
 	url = https://github.com/suai-materials/prognoz.git
+[submodule "templates"]
+	path = templates
+	url = https://github.com/suai-materials/templates.git

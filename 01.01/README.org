@@ -1,7 +1,13 @@
+#+LANGUAGE: ru
 #+INCLUDE: ./WorkWithFiles/1.org
 
 #+INCLUDE: ./NbaApp/1.org
 
 #+INCLUDE: ./WorldSkillsApp/1.org
 
+#+INCLUDE: ./MyClasses/1.org
+
+#+INCLUDE: ./PasswordC/1.org
+
+#+INCLUDE: ./VigenereCipher/1.org
 
