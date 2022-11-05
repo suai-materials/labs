@@ -34,3 +34,6 @@
 [submodule "01.01/VigenereCipher"]
 	path = 01.01/VigenereCipher
 	url = https://github.com/suai-materials/VegnereCiphere.git
+[submodule "02.03/prognoz"]
+	path = 02.03/prognoz
+	url = https://github.com/suai-materials/prognoz.git
