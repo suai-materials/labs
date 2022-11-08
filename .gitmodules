@@ -40,3 +40,6 @@
 [submodule "templates"]
 	path = templates
 	url = https://github.com/suai-materials/templates.git
+[submodule "MANAGE"]
+	path = MANAGE
+	url = https://github.com/suai-materials/managament_labs.git
