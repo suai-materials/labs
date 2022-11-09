@@ -43,3 +43,6 @@
 [submodule "MANAGE"]
 	path = MANAGE
 	url = https://github.com/suai-materials/managament_labs.git
+[submodule "04.01/db_lab2_ind"]
+	path = 04.01/db_lab2_ind
+	url = https://github.com/suai-materials/db_lab2_ind.git
