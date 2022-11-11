@@ -46,3 +46,6 @@
 [submodule "04.01/db_lab2_ind"]
 	path = 04.01/db_lab2_ind
 	url = https://github.com/suai-materials/db_lab2_ind.git
+[submodule "01.02/ruk"]
+	path = 01.02/ruk
+	url = https://github.com/suai-materials/ruk.git
