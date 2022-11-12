@@ -49,3 +49,6 @@
 [submodule "01.02/ruk"]
 	path = 01.02/ruk
 	url = https://github.com/suai-materials/ruk.git
+[submodule "01.01/.\\MonsterDog\\"]
+	path = 01.01/.\\MonsterDog\\
+	url = https://github.com/suai-materials/MonsterDog.git
