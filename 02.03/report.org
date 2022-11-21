@@ -1,0 +1,10 @@
+#+LANGUAGE: ru
+#+ODT_STYLES_FILE: "../templates/content12.ott"
+#+AUTHOR: Вася Панков
+* Задачи линейного программирования
+
+#+INCLUDE: ./lpp/1.org
+
+* Задача нелинейного программирования
+
+#+INCLUDE: ./lpp/2.org
