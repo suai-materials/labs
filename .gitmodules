@@ -52,3 +52,6 @@
 [submodule "01.01/MonsterDog"]
 	path = 01.01/MonsterDog
 	url = https://github.com/suai-materials/MonsterDog.git
+[submodule "01.02/selenium"]
+	path = 01.02/selenium
+	url = https://github.com/suai-materials/selenium_test.git
