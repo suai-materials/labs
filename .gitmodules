@@ -55,3 +55,6 @@
 [submodule "01.02/selenium"]
 	path = 01.02/selenium
 	url = https://github.com/suai-materials/selenium_test.git
+[submodule "01.02/seleniumKotlinTest"]
+	path = 01.02/seleniumKotlinTest
+	url = https://github.com/suai-materials/seleniumKotlinTest.git
