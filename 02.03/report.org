@@ -1,6 +1,9 @@
 #+LANGUAGE: ru
 #+ODT_STYLES_FILE: "../templates/content12.ott"
 #+AUTHOR: Вася Панков
+#+latex_header: \usepackage[utf8x]{inputenc}
+#+latex_header: \usepackage[T2A]{fontenc}
+#+latex_header: \usepackage[russian,english]{babel}
 * Задачи линейного программирования
 
 #+INCLUDE: ./lpp/1.org
@@ -8,3 +11,7 @@
 * Задача нелинейного программирования
 
 #+INCLUDE: ./lpp/2.org
+
+* Лабораторная работа №4
+
+#+INCLUDE: ./prognoz/1.org
