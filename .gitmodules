@@ -58,3 +58,6 @@
 [submodule "01.02/seleniumKotlinTest"]
 	path = 01.02/seleniumKotlinTest
 	url = https://github.com/suai-materials/seleniumKotlinTest.git
+[submodule "OPD"]
+	path = OPD
+	url = https://github.com/suai-materials/OPD.git
