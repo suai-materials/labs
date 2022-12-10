@@ -67,3 +67,6 @@
 [submodule "02.03/lab_5/lab_5_mm_2"]
 	path = 02.03/lab_5/lab_5_mm_2
 	url = https://github.com/suai-materials/lab_5_mm_2.git
+[submodule "01.02/ruk_user"]
+	path = 01.02/ruk_user
+	url = https://github.com/suai-materials/ruk_user.git
