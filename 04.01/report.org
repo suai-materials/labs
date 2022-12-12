@@ -1,0 +1,19 @@
+#+LANGUAGE: ru
+#+AUTHOR: Вася Панков
+#+ODT_STYLES_FILE: "../templates/content12.ott"
+
+* Лабораторная работа № 1 «Взаимодействие с базами данных в MS Visual Studio»
+
+#+INCLUDE: ./db_lab1/1.org
+
+* Лабораторная работа № 2
+
+** Часть 1
+
+#+INCLUDE: ./SQLite-lab/1.org
+
+** Часть 2 (Индивидуальное задание)
+
+#+INCLUDE: ./db_lab2_ind/1.org
+
+
