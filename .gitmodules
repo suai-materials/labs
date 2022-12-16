@@ -73,3 +73,6 @@
 [submodule "02.03/panchesh/Math.mod_excel_lab"]
 	path = 02.03/panchesh/Math.mod_excel_lab
 	url = https://github.com/danilkis/Math.mod_excel_lab
+[submodule "02.03/math_mod_lab_6"]
+	path = 02.03/math_mod_lab_6
+	url = https://github.com/suai-materials/math_mod_lab_6.git
