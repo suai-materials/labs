@@ -76,3 +76,6 @@
 [submodule "02.03/math_mod_lab_6"]
 	path = 02.03/math_mod_lab_6
 	url = https://github.com/suai-materials/math_mod_lab_6.git
+[submodule "04.01/WebJsonExample"]
+	path = 04.01/WebJsonExample
+	url = https://github.com/suai-materials/ExampleJsonWeb.git
