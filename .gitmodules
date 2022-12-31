@@ -82,3 +82,6 @@
 [submodule "01.01/SuperGame"]
 	path = 01.01/SuperGame
 	url = https://github.com/suai-materials/SuperGame.git
+[submodule "03.01_2/2"]
+	path = 03.01_2/2
+	url = https://github.com/suai-materials/second_erina.git
