@@ -79,3 +79,6 @@
 [submodule "04.01/WebJsonExample"]
 	path = 04.01/WebJsonExample
 	url = https://github.com/suai-materials/ExampleJsonWeb.git
+[submodule "01.01/SuperGame"]
+	path = 01.01/SuperGame
+	url = https://github.com/suai-materials/SuperGame.git
