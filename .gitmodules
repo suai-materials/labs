@@ -85,3 +85,9 @@
 [submodule "03.01_2/2"]
 	path = 03.01_2/2
 	url = https://github.com/suai-materials/second_erina.git
+[submodule "04.01/db_lab_3_report"]
+	path = 04.01/db_lab_3_report
+	url = https://github.com/suai-materials/db_lab_3_report.git
+[submodule "04.01/ExampleJson"]
+	path = 04.01/ExampleJson
+	url = https://github.com/suai-materials/ExampleJson.git
