@@ -12,7 +12,7 @@
 
 Если они будут сделаны другими людьми, то об этом будем оведомлено в заголовке ниже.
 
-*** Помошники
+*** Помощники
 
 [[https://github.com/danilkis][Даня Панчешников]]
 
@@ -20,5 +20,9 @@
 
 5 семестр закончен полностью и доступен в ветке [[https://github.com/suai-materials/labs/tree/sem_5][5_sem]].
 
+
+Диаграмма папок в sem_5:
+
+![](https://raw.githubusercontent.com/suai-materials/labs/sem_5/diagram.svg)
 
 
