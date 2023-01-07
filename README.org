@@ -23,6 +23,6 @@
 
 Диаграмма папок в sem_5:
 
-![](https://raw.githubusercontent.com/suai-materials/labs/sem_5/diagram.svg)
+[[https://raw.githubusercontent.com/suai-materials/labs/sem_5/diagram.svg]]
 
 
