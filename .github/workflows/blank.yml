@@ -19,3 +19,5 @@ jobs:
         uses: githubocto/repo-visualizer@main
         with:
           commit_message: 'chore: update diagram [skip ci]'
+          excluded_paths: ".git, bin, .idea"
+          
