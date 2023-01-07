@@ -1,0 +1,21 @@
+
+name: Diagram
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - diagram
+jobs:
+  update-diagram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: sem-5
+          submodules: recursive
+      - name: Update diagram
+        uses: githubocto/repo-visualizer@main
+        with:
+          commit_message: 'chore: update diagram [skip ci]'
