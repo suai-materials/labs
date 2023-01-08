@@ -10,15 +10,19 @@
 
 Которые в основном сделаны [[https://github.com/pank-su][pank-su]].
 
-Если они будут сделаны другими людьми, то об этом будем оведомлено в заголовке ниже.
+Если они будут сделаны другими людьми, то об этом будем оведомлено в заголовке ниже.https://github.com/suai-materials/labs/blob/master/README.org
 
-*** Помошники
+*** Помощники
 
 [[https://github.com/danilkis][Даня Панчешников]]
 
 ** Статус
 
-5 семестр закончен полностью и доступен в ветке [[https://github.com/suai-materials/labs/tree/sem_5][5_sem]].
+5 семестр закончен полностью и доступен в ветке [[https://github.com/suai-materials/labs/tree/sem_5][sem_5]].
 
+
+Диаграмма папок в sem_5:
+
+[[https://raw.githubusercontent.com/suai-materials/labs/sem_5/diagram.svg]]
 
 
