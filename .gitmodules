@@ -43,3 +43,6 @@
 [submodule "04.01/ExampleJson"]
 	path = 04.01/ExampleJson
 	url = https://github.com/suai-materials/ExampleJson.git
+[submodule "04.01/db_lab_3_dop"]
+	path = 04.01/db_lab_3_dop
+	url = https://github.com/suai-materials/db_lab_3_dop.git
