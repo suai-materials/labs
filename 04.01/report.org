@@ -1,6 +1,8 @@
 #+LANGUAGE: ru
-#+AUTHOR: Вася Панков
-#+ODT_STYLES_FILE: "../templates/content12.ott"
+#+TITLE: МДК.04.01 Технология разработки и защиты баз данных
+#+DESCRIPTION: И.А. Юрьева
+
+#+INCLUDE: ../templates/temp.org
 
 * Лабораторная работа № 1 «Взаимодействие с базами данных в MS Visual Studio»
 
@@ -9,7 +11,7 @@
 * Лабораторная работа № 2
 
 ** Часть 1
-
+n
 #+INCLUDE: ./SQLite-lab/1.org
 
 ** Часть 2 (Индивидуальное задание)
@@ -30,3 +32,8 @@
 #+INCLUDE: ./WebJsonExample/1.org
 
 Вывод: Я научился работать JSON и с базой данной MySql.
+
+** Дополнительное задание
+
+#+INCLUDE: ./db_lab_3_dop/1.org
+
