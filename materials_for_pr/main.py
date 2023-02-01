@@ -1,9 +1,11 @@
 import datetime
 import random
 import re
+import os
 
 import requests
 
+from ActorDate import ActorDate
 from Author import Author
 from AuthorPerfomance import AuthorPerformance
 from Performance import Performance
@@ -28,11 +30,13 @@ actors_dict = {}
 directors_dict = {}
 staff_dict = {}
 
+# Заполняемые списки
 performances: List[Performance] = []
 authors: List[Author] = []
 authors_perf: List[AuthorPerformance] = []
 timetable: List[TimeTable] = []
 roles: List[Role] = []
+actors_date: List[ActorDate] = []
 
 duration_acts = [(90, 1), (120, 1), (180, 2), (60, 1), (240, 3), (300, 3), (360, 3)]
 
@@ -82,7 +86,7 @@ season: int = 239
 # Номер стартового месяца
 start_month: int = 9
 # Номер конечного месяца
-end_month: int = 12
+end_month: int = 9
 # Организация импорта постановок данных с сайта мариинского сайта
 for i in range(start_month, end_month + 1):
     bs = BeautifulSoup(requests.get(GENERAL_URL + "/playbill/archive/",
@@ -102,7 +106,17 @@ for i in range(start_month, end_month + 1):
             for perf in performances:
                 if perf.name == name:
                     is_dubl = True
-                    timetable.append(TimeTable(performances.index(perf) + 1, scene_id, start_time, comment))
+                    perf_pos = performances.index(perf) + 1
+                    timetable.append(TimeTable(perf_pos, scene_id, start_time, comment))
+                    good_roles = list(filter(lambda r: r.performance_id == perf_pos, roles))
+                    if good_roles == 0:
+                        roles.append(Role(f"Ведущий {name}", perf_pos))
+                        actors_date.append(
+                            ActorDate(len(timetable), actors.index(random.choice(actors)) + 1, len(roles)))
+                    else:
+                        for role, actor in zip(good_roles, random.sample(actors, len(good_roles))):
+                            actors_date.append(
+                                ActorDate(len(timetable), actors.index(actor) + 1, roles.index(role) + 1))
                     break
             if is_dubl:
                 continue
@@ -144,15 +158,50 @@ for i in range(start_month, end_month + 1):
             try:
                 bs_two = BeautifulSoup(requests.get(GENERAL_URL + page_url).text, "html.parser")
                 all_info = bs_two.findAll("div", class_="sostav")
-                print(all_info[0].text)
                 # Ищем роли
                 for el in re.findall(r"(.+?)\s–\s([А-Я][а-я]+\s[А-Я][а-яё]+)", all_info[0].text):
                     if el[0] == "Дирижёр":
                         continue
-                    el[0].lstrip()
-
+                    roles.append(Role(el[0].lstrip(), len(performances)))
             except IndexError:
                 pass
+            good_roles = list(filter(lambda r: r.performance_id == len(performances), roles))
+            # Если ролей не найдено
+            if good_roles == 0:
+                roles.append(Role(f"Ведущий {name}", len(performances)))
+                actors_date.append(ActorDate(len(timetable), actors.index(random.choice(actors)) + 1, len(roles)))
+            else:
+                for role, actor in zip(good_roles, random.sample(actors, len(good_roles))):
+                    actors_date.append(ActorDate(len(timetable), actors.index(actor) + 1, roles.index(role) + 1))
 
-# print(*performances, sep='\n')
-# print(*timetable, sep='\n')
+os.chdir("/result")
+
+with open("artists.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, actors, Actor)
+
+with open("directors.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, directors, Director)
+
+with open("authors.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, authors, Author)
+
+with open("auth_perf.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, authors_perf, AuthorPerformance)
+
+with open("staff_position.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, positions, Position)
+
+with open("staff.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, staff, Staff)
+
+with open("performance.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, performances, Performance)
+
+with open("role.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, roles, Role)
+
+with open("timetable.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, timetable, TimeTable)
+
+with open("actors_date.csv", "w", encoding="utf-8") as f:
+    DataclassWriter(f, actors_date, ActorDate)
