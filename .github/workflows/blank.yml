@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: sem_5
+          ref: sem_6
           submodules: recursive
       - name: Update diagram
         uses: githubocto/repo-visualizer@main
