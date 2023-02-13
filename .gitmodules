@@ -46,3 +46,9 @@
 [submodule "04.01/db_lab_3_dop"]
 	path = 04.01/db_lab_3_dop
 	url = https://github.com/suai-materials/db_lab_3_dop.git
+[submodule "04.01/db_lab_4"]
+	path = 04.01/db_lab_4
+	url = https://github.com/suai-materials/db_lab_4.git
+[submodule "04.01_PR"]
+	path = 04.01_PR
+	url = https://github.com/suai-materials/04.01_PR.git
