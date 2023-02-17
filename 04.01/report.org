@@ -43,3 +43,5 @@
 #+INCLUDE: ./db_lab_4/1.org
 
 * Лабораторная работа № 5 «Процедуры и функции в MySQL»
+
+#+INCLUDE: ./db_lab_5/1.org
