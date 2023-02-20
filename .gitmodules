@@ -52,3 +52,6 @@
 [submodule "04.01_PR"]
 	path = 04.01_PR
 	url = https://github.com/suai-materials/04.01_PR.git
+[submodule "01.01/JavaFirst"]
+	path = 01.01/JavaFirst
+	url = https://github.com/suai-materials/JavaFirst.git

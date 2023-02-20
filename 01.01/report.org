@@ -1,7 +1,8 @@
 #+LANGUAGE: ru
-#+AUTHOR: Вася Панков
-#+ODT_STYLES_FILE: "../templates/content12.ott"
-#+EXPORT_FILE_NAME: report
+#+TITLE: МДК.01.01 Разработка программных модулей
+#+DESCRIPTION: И.А. Юрьева
+
+#+INCLUDE: ../templates/temp.org
 
 #+INCLUDE: ./WorkWithFiles/1.org
 
@@ -28,3 +29,6 @@
 
 Вывод: я научился работать с абстрактными классами и с консолью на языке C#.
 
+* Лабораторная работа №5
+
+#+INCLUDE: ./JavaFirst/1.org
