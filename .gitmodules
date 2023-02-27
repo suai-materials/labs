@@ -55,3 +55,7 @@
 [submodule "01.01/JavaFirst"]
 	path = 01.01/JavaFirst
 	url = https://github.com/suai-materials/JavaFirst.git
+
+[submodule "02.02/Hello"]
+	path = 02.02/Hello
+	url = https://github.com/suai-materials/HelloApp.git

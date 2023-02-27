@@ -1,0 +1,385 @@
+
+Цель работы: получение практических навыков при создании и использовании хранимых процедур и функций.
+
+ЗАДАНИЕ 1. Создайте хранимую процедуру с параметрами для вставки записей в таблицу user(поле comment не заполняется)
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE DEFINER=current_user PROCEDURE `insert_user`(IN username_ varchar(45), IN password_ varchar(45))
+BEGIN
+   INSERT INTO user(username, password) VALUES (username_, password_);
+END;
+#+end_src
+
+Код использования процедуры:
+
+#+begin_src sql
+CALL insert_user('Test', 'Test');
+#+end_src
+
+#+CAPTION: Результат выполения процедуры =insert​_user=
+[[file:images/20230213-144019_screenshot.png]]
+
+ЗАДАНИЕ 2. Создайте хранимую процедуру для вставки записей в таблицу user.
+Параметром процедуры является пароль. Если длина пароля меньше 6 символов,
+то в таблицу user в поле password вставляется пароль, а в поле comment вставляется комментарий – «Короткий»,
+в противном случае вставляется пароль и комментарий  - «Нормальный».
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE insert_user_pwd(IN paswrd varchar(45))
+BEGIN
+    IF CHAR_LENGTH(paswrd) < 6 THEN
+        INSERT INTO user(password, ` comment`) VALUES (paswrd, 'Короткий');
+    ELSE
+        INSERT INTO user(password, ` comment`) VALUES (paswrd, 'Нормальный');
+    END IF;
+END;
+#+end_src
+
+Код использования процедуры:
+
+#+begin_src sql :database triggers :engine mysql
+CALL insert_user_pwd("small");
+CALL insert_user_pwd("longest");
+#+end_src
+
+#+RESULTS:
+|---|
+
+#+begin_src sql :database triggers :engine mysql :exports none
+  SELECT * FROM user;
+#+end_src
+
+#+RESULTS:
+| iduser | username | password | comment    |
+|--------+----------+----------+------------|
+|     14 | Test     | Test     | NULL       |
+|     17 | NULL     | small    | Короткий   |
+|     18 | NULL     | longest  | Нормальный |
+
+#+CAPTION: Результат выполнения =insert​_user​_pws=
+[[file:images/20230214-094443_screenshot.png]]
+
+
+ЗАДАНИЕ 3. Используя тип параметра out, создать процедуру, которая возвращает максимальную длину пароля в таблице user.
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE get_max_len_pwd(OUT len integer)
+BEGIN
+    SELECT MAX(CHAR_LENGTH(password)) INTO len FROM user;
+END;
+#+end_src
+
+Код использования процедуры:
+
+#+begin_src sql :database triggers :engine mysql
+SET @max_len = NULL;
+
+CALL get_max_len_pwd(@max_len);
+
+SELECT @max_len;
+#+end_src
+
+#+RESULTS:
+| @max_len |
+|----------|
+|        7 |
+
+#+CAPTION: Результат выполнения =get_max_len_pwd=
+[[file:images/20230214-095738_screenshot.png]]
+
+ЗАДАНИЕ 4. Создать хранимую функцию, которая вернет количество нормальных паролей.
+
+Код создания функции:
+#+begin_src sql
+CREATE DEFINER=current_user FUNCTION get_count_normal_pwd()
+    RETURNS int(11) READS SQL DATA
+BEGIN
+    return (SELECT COUNT(*) FROM user WHERE ` comment` = 'Нормальный');
+END;
+#+end_src
+
+Код использования функции:
+#+begin_src sql :database triggers :engine mysql
+SELECT get_count_normal_pwd();
+#+end_src
+
+#+RESULTS:
+| get_count_normal_pwd() |
+|------------------------|
+|                      1 |
+
+#+begin_src sql :database triggers :engine mysql :exports none
+SELECT * FROM user;
+#+end_src
+
+#+RESULTS:
+| iduser | username | password | comment    |
+|--------+----------+----------+------------|
+|     14 | Test     | Test     | NULL       |
+|     17 | NULL     | small    | Короткий   |
+|     18 | NULL     | longest  | Нормальный |
+
+#+CAPTION: Исходные данные
+[[file:images/20230214-102147_screenshot.png]]
+
+#+CAPTION: Результат выполнения функции =get_count_normal_pwd()=
+[[file:images/20230214-102909_screenshot.png]]
+
+
+ЗАДАНИЕ 5. Создать процедуру, которая удаляет в таблице user пользователя с заданным username.
+
+Код создания процедуры:
+#+begin_src sql
+CREATE PROCEDURE del_user_by_username(IN username_ varchar(45))
+BEGIN
+   DELETE FROM user WHERE username = username_;
+END;
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql :database triggers :engine mysql
+SET @username_to_del = 'delete_user';
+-- call insert_user(@username_to_del, 'delete');
+call del_user_by_username(@username_to_del);
+#+end_src
+
+#+RESULTS:
+|---|
+
+#+CAPTION: Таблица =user= после выполения =insert_user=
+[[file:images/20230214-104027_screenshot.png]]
+
+#+CAPTION: Таблица =user= после выполения =del_user_by_username=
+[[file:images/20230214-104202_screenshot.png]]
+
+
+** Самостоятельная работа
+
+Используйте запросы, выполненные в лабораторной работе №2 для создания хранимых процедур. Наличие и количество параметров в процедурах необходимо обсудить с преподавателем. 
+
+Задание 1. Создайте хранимую процедуру с параметром для выполнения следующего запроса.
+
+#+begin_src sql
+ SELECT * FROM customer WHERE id_cust = 5;
+#+end_src
+
+Код создания процедуры:
+#+begin_src sql
+CREATE PROCEDURE get_customer(IN id_ INT, OUT fio varchar(243))
+BEGIN
+    SELECT CONCAT_WS(' ', last_name, first_name, second_name) INTO fio  FROM shop.customer WHERE id_cust = id_;
+END;
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql :database shop :engine mysql
+SET @fio = '';
+CALL get_customer(5, @fio);
+SELECT @fio;
+#+end_src
+
+#+RESULTS:
+| @fio                     |
+|--------------------------|
+| Голубев Иосиф Николаевич |
+
+
+#+CAPTION: Результат выполнения процедуры =get_customer=
+[[file:images/20230221-105007_screenshot.png]]
+
+Задание 2. Создайте хранимую процедуру с параметром для выполнения следующего запроса.
+
+#+begin_src sql
+SELECT * FROM customer WHERE rate_cust < 100 AND city_cust != 'Москва';
+#+end_src
+
+Код создания процедуры:
+#+begin_src sql
+DROP PROCEDURE get_customer_rate_and_city;
+
+CREATE PROCEDURE get_customer_rate_and_city(IN rate_cust_ INT,  IN city_cust_ varchar(30))
+BEGIN
+    SELECT *  FROM shop.customer WHERE rate_cust < rate_cust_ AND city_cust != city_cust_;
+END;
+
+CALL get_customer_rate_and_city(100, 'Москва');
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql  :database shop :engine mysql
+CALL get_customer_rate_and_city(100, 'Москва');
+#+end_src
+
+#+RESULTS:
+| id_cust | last_name | first_name | second_name | city_cust    | rate_cust | credit |
+|---------+-----------+------------+-------------+--------------+-----------+--------|
+|       1 | Петров    | Олег       | Дмитриевич  | Магадан      |        83 | 150000 |
+|       2 | Антипов   | Валерий    | Петрович    | Екатеринбург |        45 |  75000 |
+|       4 | Чернов    | Антон      | Петрович    | Тула         |        62 | 100000 |
+|       5 | Голубев   | Иосиф      | Николаевич  | Тбилиси      |        78 | 120000 |
+|       6 | Романов   | Глеб       | Иванович    | Екатеринбург |        91 | 270000 |
+
+
+#+CAPTION: Результат выполнения процедуры =get_customer_rate_and_city=
+[[file:images/20230228-000301_screenshot.png]]
+
+
+Задание 3. Создайте хранимую процедуру с параметром для выполнения следующего запроса.
+
+#+begin_src sql
+  SELECT * FROM `order` WHERE MONTH(date_order) = 6 AND (DAYOFMONTH(date_order) = 12
+	 OR DAYOFMONTH(date_order) = 13);
+#+end_src
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE get_order_m_dd(IN m INT, IN day_one INT, IN day_two INT)
+BEGIN
+    SELECT *
+    FROM `order`
+    WHERE MONTH(date_order) = m
+      AND (DAYOFMONTH(date_order) = day_one
+        OR DAYOFMONTH(date_order) = day_two);
+END;
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql :database shop :engine mysql
+CALL get_order_m_dd(6, 12, 13);
+#+end_src
+
+#+RESULTS:
+| id_order | sum_order | date_order          | id_sell | id_customer |
+|----------+-----------+---------------------+---------+-------------|
+|        1 |     50000 | 2010-06-12 00:00:00 |       2 |           2 |
+|        2 |     30000 | 2010-06-12 00:00:00 |       2 |           2 |
+|        3 |     70000 | 2010-06-13 00:00:00 |       2 |           1 |
+|        4 |     60000 | 2010-06-13 00:00:00 |       5 |           1 |
+
+#+CAPTION:  Результат выполнения процедуры =get_order_m_dd=
+[[file:images/20230228-001235_screenshot.png]]
+
+Задание 4. Создайте хранимую процедуру с параметром, которая в зависимости от параметра находит наименьшую или
+наибольшую сумму для каждого заказчика.
+
+Код создания процедуры:
+#+begin_src sql
+/**
+  @param min_or_max при 0 - мин, при 1 - max
+ */
+CREATE PROCEDURE get_customer_min_max(IN min_or_max BIT)
+  BEGIN
+	  SELECT CONCAT_WS(' ', last_name, first_name, second_name) as ФИО,
+			 IF(min_or_max, MIN(sum_order), MAX(sum_order))     AS 'Сумма'
+	  FROM `order`
+			   JOIN customer c on c.id_cust = `order`.id_customer
+	  GROUP BY id_customer;
+  END;
+#+end_src
+
+Код использования процедуры:
+#+begin_src sql :database shop :engine mysql
+SELECT 'Минимальная сумма';
+CALL get_customer_min_max(0);
+SELECT 'Максимальная сумма';
+CALL get_customer_min_max(1);
+#+end_src
+
+#+RESULTS:
+| Минимальная сумма        |       |
+|--------------------------+-------|
+| Минимальная сумма        |       |
+| ФИО                      | Сумма |
+| Антипов Валерий Петрович | 50000 |
+| Петров Олег Дмитриевич   | 70000 |
+| Голубев Иосиф Николаевич | 35000 |
+| Чернов Антон Петрович    | 70000 |
+| Максимальная сумма       |       |
+| Максимальная сумма       |       |
+| ФИО                      | Сумма |
+| Антипов Валерий Петрович | 30000 |
+| Петров Олег Дмитриевич   | 60000 |
+| Голубев Иосиф Николаевич | 35000 |
+| Чернов Антон Петрович    | 70000 |
+
+
+#+CAPTION: Результат выполнения процедуры =get_customer_min_max=
+[[file:images/20230228-002735_screenshot.png]]
+
+
+Задание 5. Создайте хранимую процедуру с параметром для выполнения следующего запроса.
+
+#+begin_src sql
+UPDATE seller SET comm_sell = 1.2 WHERE sales_plan > 300
+#+end_src
+
+Код создания процедуры:
+#+begin_src sql
+CREATE PROCEDURE update_sell(IN mnoj REAL, IN sale_p INT)
+BEGIN
+    UPDATE seller SET comm_sell = comm_sell * mnoj WHERE sales_plan > sale_p;
+END;
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql
+SELECT * FROM seller;
+CALL update_sell(1.2, 300);
+SELECT * FROM seller;
+#+end_src
+
+#+CAPTION: До выполнения запроса =update_sell=
+[[file:images/20230228-003943_screenshot.png]]
+
+#+CAPTION: После выполнения запроса =update_sell=
+[[file:images/20230228-004000_screenshot.png]]
+
+
+Задание 6. Создайте хранимую процедуру с параметром для выполнения запроса на удаление
+
+#+begin_src sql
+  DELETE FROM order WHERE id_customer=(SELECT id_cust FROM customer
+		 WHERE last_name = 'Романов' AND first_name = 'Глеб' AND second_name = 'Иванович');
+#+end_src
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE delete_order(IN last_name_ varchar(80), IN first_name_ varchar(80), second_name_ varchar(80))
+BEGIN
+    DELETE FROM `order` WHERE id_customer=(SELECT id_cust FROM customer
+		 WHERE last_name = last_name_ AND first_name = first_name_ AND second_name = second_name_ );
+END;
+#+end_src
+
+
+Код вызова процедуры:
+
+#+begin_src sql
+SELECT * FROM `order`;
+CALL delete_order('Романов', 'Глеб', 'Иванович');
+SELECT * FROM `order`;
+#+end_src
+
+#+CAPTION: До выполнения запроса =delete_order=
+[[file:images/20230228-010218_screenshot.png]]
+
+
+#+CAPTION: После выполнения запроса =delete_order=
+[[file:images/20230228-010243_screenshot.png]]
+
+** Индивидуальное задание
+
+Создать 2 представления и 5 хранимых процедур для БД из индивидуального
+задания лабораторной работы №1. Необходимо учесть,
+что создание определенной процедуры на сервере будет
+целесообразно для данной предметной области.
+
+​1. Создать View, где будут нормально представлены заказы.
