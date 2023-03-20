@@ -1,0 +1,8 @@
+#+LANGUAGE: ru
+#+TITLE: МДК.01.04 Системное программирование 
+#+DESCRIPTION: М.Ю. Кафтан
+
+#+INCLUDE: ../templates/temp.org
+
+
+#+INCLUDE: ./lab_1/1.org 

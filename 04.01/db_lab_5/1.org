@@ -382,4 +382,242 @@ SELECT * FROM `order`;
 что создание определенной процедуры на сервере будет
 целесообразно для данной предметной области.
 
+Представления:
+
 ​1. Создать View, где будут нормально представлены заказы.
+#+begin_src sql
+CREATE OR REPLACE VIEW cool_order as
+SELECT `order`.id                                               as "ID заказа",
+       date                                                     AS "Дата заказа",
+       date_execution                                           as "Дата исполнения",
+       IF(is_execution, 'Выполнено', 'Не выполнено')            AS 'Статус выполнения',
+       IF(is_payed, 'Оплата пришла', 'Оплаты не происходило')   AS 'Статус оплаты',
+       warranty                                                 AS 'Гарантия',
+       CONCAT_WS(' ', e.last_name, e.first_name, e.second_name) AS "ФИО продавца",
+       CONCAT_WS(' ', c.last_name, c.first_name, c.second_name) AS "ФИО покупателя",
+       pay_proportion                                           AS 'Процент оплаты',
+       (SELECT GROUP_CONCAT(CONCAT_WS(' ', m.name, c2.brand), ', ')
+        FROM order_components
+                 JOIN component c2 on c2.id = order_components.component_id
+                 JOIN manufacturer m on m.id = c2.manufacturer_id
+        WHERE order_id = `order`.id)                            AS 'Компоненты',
+       (SELECT GROUP_CONCAT(s.name, ', ')
+        FROM orders_services
+                 JOIN service s on s.id = orders_services.service_id
+        WHERE order_id = `order`.id)                            AS 'Сервисы',
+       (SELECT SUM(s2.cost * orders_services.quantity)
+        FROM orders_services
+                 JOIN service s2 on s2.id = orders_services.service_id
+        WHERE order_id = `order`.id) + (SELECT SUM(c2.price * order_components.quantity)
+                                        FROM order_components
+                                                 JOIN component c2 on c2.id = order_components.component_id
+
+                                        WHERE order_id = `order`.id) AS 'Сумма заказа'
+FROM `order`
+         JOIN employee e on e.id = `order`.employee_id
+         JOIN customer c on c.id = `order`.customer_id;
+#+end_src
+
+
+
+#+CAPTION: Демонстрация View =cool_order= №1
+[[file:images/20230228-100306_screenshot.png]]
+
+#+CAPTION: Демонстрация View =cool_order= №2
+[[file:images/20230228-100544_screenshot.png]]
+
+
+​2. Создайте View для адекватного отображения компонентов.
+
+#+begin_src sql
+CREATE OR REPLACE VIEW cool_components AS
+SELECT component.id           AS "ID компонента",
+       t.name                 AS "Тип компонента",
+       brand                  AS "Бренд",
+       m.name                 AS "Производитель",
+       c.name                 AS "Страна производитель",
+       release_date           AS "Дата релиза",
+       characteristics        AS "Характеристики",
+       warranty               AS "Гарантия",
+       component.description  AS "Описание",
+       CONCAT(price, ' руб.') AS "Цена"
+FROM component
+         JOIN type t on t.id = component.type_id
+         JOIN manufacturer m on m.id = component.manufacturer_id
+         JOIN country c on c.id = component.man_Country;
+#+end_src
+
+
+#+CAPTION: Демонстрация View =cool_components=
+[[file:images/20230228-101452_screenshot.png]]
+
+
+Хранимые процедуры:
+
+​1. Создайте хранимую процедуру для добавления компонентов
+
+Код создания процедуры:
+#+begin_src sql
+/** Будем брать условность, то что если компонент добавлен, то он только что вышел */
+CREATE PROCEDURE add_component(IN typename varchar(35), IN brandname varchar(80), IN manufacturername varchar(35),
+                               IN man_country varchar(80),
+                               IN characteristics_ text, IN warranty_ varchar(10), IN price_ INT)
+BEGIN
+    DECLARE type_id_ INT;
+    DECLARE manufacturer_id_ INT;
+    DECLARE man_country_id_ INT;
+    SET type_id_ = (SELECT id FROM type WHERE typename = name);
+    IF (type_id_ IS NULL) THEN
+        INSERT INTO type(name) VALUES (typename);
+        SET type_id_ = (SELECT id FROM type WHERE typename = name);
+    end if;
+    SET manufacturer_id_ = (SELECT id FROM manufacturer WHERE name = manufacturername);
+    IF (manufacturer_id_ IS NULL) THEN
+        INSERT INTO manufacturer(name) VALUES (manufacturername);
+        SET manufacturer_id_ = (SELECT id FROM manufacturer WHERE manufacturername = name);
+    end if;
+    SET man_country_id_ = (SELECT id FROM country WHERE man_country = name);
+    IF (man_country_id_ IS NULL) THEN
+        INSERT INTO country(name) VALUES (man_country);
+        SET man_country_id_ = (SELECT id FROM country WHERE man_country = name);
+    end if;
+
+    INSERT INTO component(type_id, brand, manufacturer_id, man_Country, release_date, characteristics, warranty,
+                          price)
+    VALUES (type_id_, brandname, manufacturer_id_, man_country_id_, NOW(),
+            characteristics_, warranty_, price_);
+END;
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql
+  CALL add_component('test', 'test', 'test', 'test', 'test', 'test', 10000);
+  CALL add_component('Процессор', 'core i 3', 'Intel', 'Россия', 'test', 'test', 10000);
+#+end_src
+
+#+CAPTION: Результат выполнения процедуры =add_component=. Таблица =component=
+[[file:images/20230306-221141_screenshot.png]]
+
+
+#+CAPTION: Результат выполнения процедуры =add_component=. Таблица =type=
+[[file:images/20230306-215157_screenshot.png]]
+
+#+CAPTION: Результат выполнения процедуры =add_component=. Таблица =manufacturer=
+[[file:images/20230306-220335_screenshot.png]]
+
+
+#+CAPTION: Результат выполнения процедуры =add_component=. Таблица =country=
+[[file:images/20230306-220549_screenshot.png]]
+
+\clearpage
+
+​2. Создайте процедуру для поиска сотрудника, по строке, например
+"вас" -> "Василий Панков Дмитриевич", "Кирилл Васильев Владимирович" и "Лида Турсунова Васильевна"
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE get_employee(IN str varchar(160))
+BEGIN
+    SELECT * FROM employee WHERE LOWER(CONCAT_WS(' ', last_name, first_name, second_name)) LIKE CONCAT('%', str, '%');
+END;
+#+end_src
+
+Код использования процедуры:
+
+#+begin_src sql
+CALL get_employee('Вас')
+#+end_src
+
+#+CAPTION: Результат выполения процедуры =get_employee=
+[[file:images/20230306-222712_screenshot.png]]
+
+​3. Создайте процедуру, которая будет обновлять все цены (сервисы и компоненты) на определённый процент, учтите, что
+процент указывается как число.
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE update_costs(IN percentage int)
+BEGIN
+    DECLARE normal_percentage REAL;
+    SET normal_percentage = 1 + percentage / 100.0;
+    UPDATE component SET price = price * normal_percentage;
+    UPDATE service SET cost = cost * normal_percentage;
+END;
+#+end_src
+
+
+Код использования процедуры:
+
+#+begin_src sql
+CALL update_costs(10);
+#+end_src
+
+#+CAPTION: До выполнения процедуры =update_costs=. Таблица =component=
+[[file:images/20230313-140624_screenshot.png]]
+
+
+#+CAPTION: До выполнения процедуры =update_costs=. Таблица =service=
+[[file:images/20230313-140715_screenshot.png]]
+
+#+CAPTION: После выполнения процедуры =update_costs=. Таблица =component=
+[[file:images/20230313-140826_screenshot.png]]
+
+#+CAPTION: После выполнения процедуры =update_costs=. Таблица =service=
+[[file:images/20230313-141029_screenshot.png]]
+
+\clearpage
+
+​4. Создайте процедуру, которая будет обновлять зарплату опр. сотруднику;
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE update_salary(IN fio varchar(240), IN salary_ INT)
+BEGIN
+    UPDATE position
+    SET salary = salary_
+    WHERE id = (SELECT position_id
+                FROM employee
+                WHERE LOWER(CONCAT_WS(' ', last_name, first_name, second_name)) LIKE CONCAT('%', fio, '%') LIMIT 1);
+END;
+#+end_src
+
+Код вызова процедуры:
+#+begin_src sql
+CALL update_salary('Панков Василий', 123000);
+#+end_src
+
+#+CAPTION: Таблица employee
+[[file:images/20230313-142210_screenshot.png]]
+
+#+CAPTION: До выполнения процедуры =update_salary=. Таблица =position=
+[[file:images/20230313-142357_screenshot.png]]
+
+#+CAPTION: После выполнения процедуры =update_salary=. Таблица =position=
+[[file:images/20230313-142514_screenshot.png]]
+
+\clearpage
+
+​5. Создайте процедуру, которая бы находила продавца с наибольшими продажами(количество):
+
+Код создания процедуры:
+
+#+begin_src sql
+CREATE PROCEDURE get_good_employee()
+BEGIN
+   SELECT * FROM employee WHERE id = (SELECT employee_id FROM `order` GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1);
+END;
+#+end_src
+
+
+Код вызова процедуры:
+
+#+begin_src sql
+CALL get_good_employee();
+#+end_src
+
+
+#+CAPTION: Результат выполнения процедуры =get_good_employee=
+[[file:images/20230313-143311_screenshot.png]]

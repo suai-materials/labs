@@ -59,3 +59,9 @@
 [submodule "02.02/Hello"]
 	path = 02.02/Hello
 	url = https://github.com/suai-materials/HelloApp.git
+[submodule "cert"]
+	path = cert
+	url = https://github.com/suai-materials/cert.git
+[submodule "01.04/lab_1_01_04"]
+	path = 01.04/lab_1_01_04
+	url = https://github.com/suai-materials/lab_1_01_04.git
