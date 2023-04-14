@@ -66,3 +66,9 @@
 	path = 01.04/lab_1_01_04
 	url = https://github.com/suai-materials/lab_1_01_04.git
 
+[submodule "02.02/lab_2_4"]
+	path = 02.02/lab_2_4
+	url = https://github.com/suai-materials/lab_2_4.git
+[submodule "02.02/lab_5_"]
+	path = 02.02/lab_5_
+	url = https://github.com/suai-materials/lab_5_6.git

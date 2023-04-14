@@ -1,0 +1,7 @@
+#+LANGUAGE: ru
+#+TITLE: МДК.02.02 Инструментальные средства разработки программного обеспечения
+#+DESCRIPTION: У.С. Опалева 
+
+#+INCLUDE: ../templates/temp.org
+
+#+INCLUDE: ./Hello/report.org

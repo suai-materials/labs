@@ -1,0 +1,424 @@
+% Created 2023-03-09 Thu 12:07
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[utf8x]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{tempora}
+\usepackage{geometry}
+\geometry{a4paper, left=30mm, top=20mm, bottom=20mm, right=15mm }
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries}
+\addto\captionsrussian{\renewcommand{\contentsname}{\centering \normalsize СОДЕРЖАНИЕ}}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\usepackage{titletoc}
+\titlecontents{section}[0pt]{}{\contentsmargin{0pt} \thecontentslabel\enspace}{\contentsmargin{0pt}}{\titlerule*[0.5pc]{.}\contentspage}[]
+\dottedcontents{subsection}[3.1em]{}{1.5em}{0.5pc}
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{custom}{ -- }
+\captionsetup[figure]{name=Рисунок, labelsep=custom, font={onehalfspacing}, justification=centering}
+\usepackage{ragged2e}
+\justifying
+\setlength\parindent{1.25cm}
+\sloppy
+\usepackage{indentfirst}
+\author{В.Д. Панков}
+\date{\today}
+\title{МДК.02.02 Инструментальные средства разработки программного обеспечения}
+\hypersetup{
+ pdfauthor={В.Д. Панков},
+ pdftitle={МДК.02.02 Инструментальные средства разработки программного обеспечения},
+ pdfkeywords={},
+ pdfsubject={У.С. Опалева},
+ pdfcreator={Emacs 28.2 (Org mode 9.5.5)}, 
+ pdflang={Russian}}
+\begin{document}
+
+\begin{titlepage}
+
+\centering{ГУАП}
+
+\vspace{32pt}
+
+\centering{ФАКУЛЬТЕТ СРЕДНЕГО ПРОФЕССИОНАЛЬНОГО ОБРАЗОВАНИЯ}
+
+\vspace{60pt}
+
+\raggedright{ОТЧЕТ \\
+ЗАЩИЩЕН С ОЦЕНКОЙ}
+\vspace{14pt}
+
+\raggedright{ПРЕПОДАВАТЕЛЬ}
+
+\vspace{12pt}
+
+\begin{tabularx}{\textwidth}{ >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X }
+	 преподаватель & & У.С. Опалева \\ 
+	 \hrulefill & \hrulefill & \hrulefill \\ 
+\footnotesize{должность, уч. степень, звание} & \footnotesize{подпись, дата} & \footnotesize{инициалы, фамилия} \\ 
+\end{tabularx} 
+ 
+\vspace{48pt} 
+
+\centering{ОТЧЕТЫ О ЛАБОРАТОРНЫХ РАБОТАХ} 
+
+\vspace{76pt} 
+
+\centering{По дисциплине: МДК.02.02 Инструментальные средства разработки программного обеспечения} 
+
+\vspace*{\fill} 
+
+\raggedright{РАБОТУ ВЫПОЛНИЛ} 
+
+\vspace{10pt} 
+
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X  >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X }
+	 СТУДЕНТ ГР. № & 021к & & В.Д. Панков \\ 
+	 & \hrulefill & \hrulefill & \hrulefill \\ 
+	 &  & \footnotesize{подпись, дата} & \footnotesize{инициалы, фамилия} \\ 
+\end{tabularx} 
+ 
+\vspace*{\fill} 
+
+\centering{Санкт-Петербург \the\year} 
+
+\end{titlepage}
+
+\tableofcontents \clearpage
+\linespread{1.25}
+
+\section{Лабораторная работа № 1}
+\label{sec:orgcced51c}
+
+Создание консольного приложения в IDE Visual Studio. Работа с системой контроля версий
+
+Цель: изучение IDE Visual Studio, создание простейшего приложения на Python, подключение Git.
+
+
+​1. Добавил в HelloApp.py
+
+\begin{minted}[breaklines=true,float=t,breakanywhere=true,fontsize=\footnotesize]{python}
+print("Hello Python from Visual Studio!")
+\end{minted}
+
+​2. Создал Git-репозиторий с помощью PyCharm
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-094130_screenshot.png}
+\end{center}
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-094147_screenshot.png}
+\end{center}
+
+​3. Добавил файл в Stage
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-094325_screenshot.png}
+\caption{Добавление файла в Stage в Pycharm}
+\end{figure}
+
+​4. Создал commit изменений
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-094612_screenshot.png}
+\caption{Демонстрация commit}
+\end{figure}
+
+\clearpage
+
+​4. Добавление кода из прошлых заданий по Python
+
+\begin{minted}[breaklines=true,float=t,breakanywhere=true,fontsize=\footnotesize]{python}
+print("Hello Python from Visual Studio!")
+s: str = "*" * 30
+print(s)
+print("New project")
+print("")
+
+import cProfile
+import re
+
+r = re.compile("\\d\\S")
+cProfile.run("""[r.findall("sdfdsfD, 1d, 7f") for i in range(1000000)]""")
+
+\end{minted}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-103001_screenshot.png}
+\caption{Создание нового commit}
+\end{figure}
+
+
+​5. Демонстрация git-log
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-113116_screenshot.png}
+\end{center}
+
+\clearpage
+
+​6. Push репозитория на GitHub
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-094932_screenshot.png}
+\caption{Создание репозитория на GitHub}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-095050_screenshot.png}
+\caption{Получил ссылку}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-095124_screenshot.png}
+\caption{Добавление remote репозитория}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-095207_screenshot.png}
+\caption{После добавления remote}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-095249_screenshot.png}
+\caption{Процесс push}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-104021_screenshot.png}
+\caption{Изменения репозитория}
+\end{figure}
+
+\clearpage
+
+​7. Так-как я использую Pycharm, то он не генерирует .gitignore, поэтому самостоятельно был создан .gitignore, который у меня исключает папки:
+\begin{itemize}
+\item .idea - файлы Jetbrains, которые описывают проект
+\item venv - локальный интерпретатор
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-114146_screenshot.png}
+\caption{Демонстрация .gitignore}
+\end{figure}
+
+\clearpage
+
+​8. Создать новый проект в VS.
+Написать код генерирующий список элементов случайным образом из диапазона
+от 5 до № по журналу * 100 (число элементов № по журналу + 10).
+Выполнить коммит (содержание должно соответствовать задаче).
+Оформить код в виде функции, вызвав её с указанным числом элементов.
+Добавить коммит. Запушить на GitHub.
+На веб-сервисе создать файл README с описанием задачи,
+перечнем, включающим среду и язык реализации,
+используемые библиотеки, фамилию разработчика.
+
+
+Код генератора списка:
+\begin{minted}[breaklines=true,float=t,breakanywhere=true,fontsize=\footnotesize]{python}
+from random import randrange
+
+print([randrange(5, 12 * 100) for i in range(22)])
+\end{minted}
+
+Код генератора списка в функции:
+\begin{minted}[breaklines=true,float=t,breakanywhere=true,fontsize=\footnotesize]{python}
+from random import randrange
+from typing import List
+
+
+def my_random_list(n: int) -> List[int]:
+	"""Генерация списка со случайными числами"""
+	return [randrange(5, 12 * 100) for i in range(n)]
+
+
+if __name__ == '__main__':
+	print(my_random_list(22))
+
+\end{minted}
+
+Текст README.org файла:
+\begin{minted}[breaklines=true,float=t,breakanywhere=true,fontsize=\footnotesize]{org}
+#+TITLE: Генератор списка случайных чисел
+#+AUTHOR: Панков Василий
+#+OPTIONS: toc:nil
+
+Реализовал функцию, которая генерирует список размером n,
+элементы которого случайные числа от 5 до 1200.
+
+- Среда: Jetbrains PyCharm
+- Язык: Python
+- Использованные библиотеки
+  - random - для генерации случайных чисел
+  - typing - для статической типизации
+- Автор: Панков В. Д.
+
+\end{minted}
+
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-115518_screenshot.png}
+\caption{Первый коммит}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-115559_screenshot.png}
+\caption{Второй коммит}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-115641_screenshot.png}
+\caption{Git-log}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-115753_screenshot.png}
+\caption{Репозиторий на GitHub после двух commit'ов}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230222-101436_screenshot.png}
+\caption{Создание README файла}
+\end{figure}
+
+=\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{Hello/images/20230309-120532_screenshot.png}
+\caption{Итоговый репозиторий на GitHub}
+\end{figure}
+
+
+\clearpage
+
+Контрольные вопросы:
+
+\begin{enumerate}
+\item Что такое система контроля версий Git? Требуется ли её установка при работе с VS? 
+
+Git - это система контроля версий,
+которая позволяет отслеживать изменения
+в исходном коде проекта и управлять ими.
+Git позволяет хранить историю изменений,
+возвращаться к предыдущим версиям кода, вносить изменения параллельно,
+объединять изменения и многое другое.
+
+Для Visual Studio требуется предустановленный Git.
+
+\item Какие основные возможности предоставляет Git в среде VS? 
+
+В среде Visual Studio Git предоставляет возможности по созданию, клонированию, управлению и синхронизации репозиториев Git. Основные возможности Git в среде Visual Studio:
+\begin{itemize}
+\item Создание новых репозиториев Git
+
+\item Клонирование существующих репозиториев Git
+
+\item Управление изменениями исходного кода в репозитории Git
+
+\item Отслеживание изменений, внесенных другими участниками проекта
+
+\item Работа с ветками и слияние изменений
+
+\item Отправка изменений в удаленный репозиторий и получение изменений из удаленного репозитория.
+\end{itemize}
+
+\item Что из настроек Git является обязательным при работе с удалённым репозиторием? 
+
+\begin{itemize}
+\item Указание удаленного репозитория, куда будут отправляться изменения.
+
+\item Настройка локальной ветки для отслеживания удаленной ветки.
+
+\item Аутентификация на удаленном репозитории.
+\end{itemize}
+
+\item Какую систему защиты и сертификации данных использует Git по умолчанию?
+
+Git может использовать три различных протокола для передачи данных:
+Local, HTTP, Secure Shell (SSH).
+
+При хранении файлов на компьютере используется Local.
+
+Для передачи используют: HTTP или Smart HTTP(более умная верисия HTTP).
+
+SSH используется, если он используется сервером.
+
+\item Можно ли вернуться к прежней версии файла с помощью Git? Каким образом? 
+
+Да, можно вернуться к прежней версии файла с помощью Git.
+Для этого необходимо использовать команду "git checkout"
+с указанием хэша коммита или имени ветки, на которую нужно переключиться.
+
+\item Что нужно сделать, если требуется изменить сообщение последнего коммита?
+
+Если требуется изменить сообщение последнего коммита,
+можно использовать команду "git commit --amend".
+Она позволяет изменить сообщение последнего коммита
+или добавить изменения в него.
+
+\item Как называется главная ветвь разработки? Можно ли её переименовать?
+
+Главная ветвь разработки называется "master". В Git версии 2.28.0 и выше главная ветвь была переименована в "main".
+Да, её можно переименовать с помощью команды "git branch -m <old\textsubscript{branch}\textsubscript{name}> <new\textsubscript{branch}\textsubscript{name}>".
+
+\item Зачем нужен файл .gitignore и каким образом он создаётся?
+
+Файл .gitignore предназначен для указания Git файлов и папок,
+которые не должны быть добавлены в репозиторий.
+Он позволяет исключить файлы и папки, которые не нужны в репозитории,
+такие как временные файлы, конфигурационные файлы,
+файлы логов, файлы бинарных данных и многое другое.
+
+Файл .gitignore создается в корневой папке проекта.
+Он может содержать шаблоны для исключения файлов и папок.
+Шаблоны могут включать имя файла или папки, а также использовать
+символы подстановки, такие как *, ?, [ ], \{ \}, и многое другое.
+Файл .gitignore можно создать вручную или с помощью специальных инструментов,
+таких как Visual Studio или Git Extensions.
+\end{enumerate}
+\end{document}
