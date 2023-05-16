@@ -32,3 +32,9 @@
 * Лабораторная работа №5
 
 #+INCLUDE: ./JavaFirst/1.org
+
+
+
+* Лабораторная работа №6
+
+#+INCLUDE: ./Bankomat/1.org

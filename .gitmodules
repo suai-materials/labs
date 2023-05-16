@@ -72,3 +72,15 @@
 [submodule "02.02/lab_5_"]
 	path = 02.02/lab_5_
 	url = https://github.com/suai-materials/lab_5_6.git
+[submodule "lab_7_8"]
+	path = lab_7_8
+	url = https://github.com/suai-materials/lab_7_8.git
+[submodule "01.04/lab_5_04_01"]
+	path = 01.04/lab_5_04_01
+	url = https://github.com/suai-materials/lab_5_04_01.git
+[submodule "02.02/lab_9_12"]
+	path = 02.02/lab_9_12
+	url = https://github.com/suai-materials/lab_9_12.git
+[submodule "01.01/Bankomat"]
+	path = 01.01/Bankomat
+	url = https://github.com/suai-materials/Bankomat.git
